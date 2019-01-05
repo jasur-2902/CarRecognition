@@ -9,14 +9,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import java.io.InputStream;
+
 import eu.amirs.JSON;
 import uz.shukurov.carrecognition.R;
 
@@ -25,13 +28,13 @@ public class ResultActivity extends Activity {
 
     private String extra[] = new String[2];
     private String result, plate, color, year, body_type, make_model, url_out, type, processingTime;
-    private ImageView mImageView;
+    private ImageView mImageView, mImageBodyType;
     private TextView mType, mPlate, mColor, mModel, mBodyType, mYear, mProcessingTime;
     private ProgressDialog mProgressDialog;
 
     private JSON json;
 
-    private int x1,x2,x3,x4,y1,y2,y3,y4;
+    private int x1, x2, x3, x4, y1, y2, y3, y4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,28 +57,98 @@ public class ResultActivity extends Activity {
         new DownloadImage().execute(url_out);
 
 
-
-        mType =  findViewById(R.id.mType);
+        mType = findViewById(R.id.mType);
         mPlate = findViewById(R.id.mPlate);
         mColor = findViewById(R.id.mColor);
         mModel = findViewById(R.id.mModel);
-        mYear =  findViewById(R.id.mYear);
+        mYear = findViewById(R.id.mYear);
         mBodyType = findViewById(R.id.mBodyType);
         mProcessingTime = findViewById(R.id.processingTime);
+        mImageBodyType = findViewById(R.id.iv_body);
+
 
         mPlate.setText(plate);
 
         mColor.setText("Color: " + color);
 
-        mYear.setText("Year: "+year);
+        mYear.setText("Year: " + year);
 
-        mBodyType.setText("Body type: "+body_type);
+        setBodyType();
 
-        mModel.setText("Brand: "+make_model);
+        mModel.setText("Brand: " + make_model);
 
-        mType.setText("Model: "+type);
+        mType.setText("Model: " + type);
 
-        mProcessingTime.setText("Processing Time: "+processingTime);
+        mProcessingTime.setText("Processing Time: " + processingTime);
+
+    }
+
+    private void setBodyType() {
+
+        switch (body_type) {
+            case "antique":
+                mBodyType.setText("Body type: " + "Antique");
+                break;
+            case "missing":
+                mBodyType.setText("Body type: Missing");
+                break;
+            case "motorcycle":
+                mBodyType.setText("Body type: Motorcycle");
+                mImageBodyType.setVisibility(View.INVISIBLE);
+                break;
+            case "sedan-compact":
+                mBodyType.setText("Body type: Sedan Compact");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
+                break;
+            case "sedan-convertible":
+                mBodyType.setText("Body type: Sedan Convertible");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
+                break;
+            case "sedan-sports":
+                mBodyType.setText("Body type: Sedan Sports");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type5));
+                break;
+            case "sedan-standard":
+                mBodyType.setText("Body type: Sedan Standard");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
+                break;
+            case "sedan-wagon":
+                mBodyType.setText("Body type: Sedan Wagon");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type1));
+                break;
+            case "suv-crossover":
+                mBodyType.setText("Body type: SUV Crossover");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type7));
+                break;
+            case "suv-standard":
+                mBodyType.setText("Body type: SUV Standard");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type7));
+                break;
+            case "suv-wagon":
+                mBodyType.setText("Body type: SUV Wagon");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type3));
+                break;
+            case "tractor-trailer":
+                mBodyType.setText("Body type: Tractor Trailer");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type4));
+                break;
+            case "truck-standard":
+                mBodyType.setText("Body type: Tractor Standard");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
+                break;
+            case "van-full":
+                mBodyType.setText("Body type: VAN Full");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
+                break;
+            case "van-mini":
+                mBodyType.setText("Body type: VAN Mini");
+                mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type2));
+                break;
+            default:
+                mBodyType.setText("Body type: " + body_type);
+
+        }
+
 
     }
 
@@ -155,11 +228,10 @@ public class ResultActivity extends Activity {
             tempCanvas.drawBitmap(decodedByte, 0, 0, null);
 
 
-            tempCanvas.drawLine(x1,y1,x2,y2,paint);
-            tempCanvas.drawLine(x1,y1,x4,y4,paint);
-            tempCanvas.drawLine(x3,y3,x4,y4,paint);
-            tempCanvas.drawLine(x3,y3,x2,y2,paint);
-
+            tempCanvas.drawLine(x1, y1, x2, y2, paint);
+            tempCanvas.drawLine(x1, y1, x4, y4, paint);
+            tempCanvas.drawLine(x3, y3, x4, y4, paint);
+            tempCanvas.drawLine(x3, y3, x2, y2, paint);
 
 
             mImageView.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));

@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         mStorageImage = FirebaseStorage.getInstance().getReference().child("images");
 
-        mCapture =  findViewById(R.id.mCapture);
+        mCapture = findViewById(R.id.mCapture);
 
         mTakePicture = findViewById(R.id.mTakePicture);
 
@@ -188,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
@@ -231,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private boolean isDeviceSupportCamera() {
         if (getApplicationContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_CAMERA)) {
@@ -242,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -260,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     //Uploading Image to Firebase
     private void uploadImage() {
@@ -301,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             mDialog.cancel();
-            Toast.makeText(MainActivity.this,"Sorry, something went wrong!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Sorry, something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
 
