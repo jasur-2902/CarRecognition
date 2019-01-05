@@ -137,15 +137,15 @@ public class ResultActivity extends Activity {
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
                 break;
             case "van-full":
-                mBodyType.setText("Body type: VAN Full");
+                mBodyType.setText(getString(R.string.body_type) + getString(R.string.van_full));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
                 break;
             case "van-mini":
-                mBodyType.setText("Body type: VAN Mini");
+                mBodyType.setText(getString(R.string.body_type) + getString(R.string.van_mini));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type2));
                 break;
             default:
-                mBodyType.setText("Body type: " + body_type);
+                mBodyType.setText(getString(R.string.body_type) + body_type);
 
         }
 

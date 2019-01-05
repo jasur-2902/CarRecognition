@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Car Recognition</string>
+    <string name="body_type">Body type:</string>
+    <string name="van_mini">VAN Mini</string>
+    <string name="van_full">VAN Full</string>
 </resources>
