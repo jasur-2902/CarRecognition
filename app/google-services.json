@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "381266161153",
+    "firebase_url": "https://car-recognition-app.firebaseio.com",
+    "project_id": "car-recognition-app",
+    "storage_bucket": "car-recognition-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381266161153:android:75e10f795367faff",
+        "android_client_info": {
+          "package_name": "uz.shukurov.carrecognition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381266161153-659ggmsld17svqnafah5ghn1rjgo1qkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN_0I1080BaTJso0-j-aXajr2thOhSXws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
