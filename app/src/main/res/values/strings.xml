@@ -1,6 +1,20 @@
 <resources>
-    <string name="app_name">Car Recognition</string>
-    <string name="body_type">Body type:</string>
-    <string name="van_mini">VAN Mini</string>
-    <string name="van_full">VAN Full</string>
+    <string name="app_name"> Car Recognition</string>
+    <string name="body_type">Body type: </string>
+    <string name="van_mini"> VAN Mini</string>
+    <string name="van_full"> VAN Full</string>
+    <string name="tractor_standard"> Tractor Standard</string>
+    <string name="tractor_trailer"> Tractor Trailer</string>
+    <string name="suv_wagon"> SUV Wagon</string>
+    <string name="suv_standard"> SUV Standard</string>
+    <string name="suv_crossover"> SUV Crossover</string>
+    <string name="sedan_wagon"> Sedan Wagon</string>
+    <string name="sedan_standard"> Sedan Standard</string>
+    <string name="sedan_sports"> Sedan Sports</string>
+    <string name="sedan_convertible"> Sedan Convertible</string>
+    <string name="sedan_compact"> Sedan Compact</string>
+    <string name="motorcycle"> Motorcycle</string>
+    <string name="missing"> Missing</string>
+    <string name="antique"> Antique</string>
+    <string name="car_image_description">Processed Car Image</string>
 </resources>

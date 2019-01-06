@@ -34,7 +34,9 @@
             </meta-data>
         </provider>
 
-        <activity android:name=".ResultActivity"></activity>
+        <activity
+            android:theme="@style/NoActionBar"
+            android:name=".ResultActivity"></activity>
     </application>
 
 </manifest>

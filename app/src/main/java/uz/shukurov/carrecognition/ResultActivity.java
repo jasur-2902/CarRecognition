@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class ResultActivity extends Activity {
 
     private String extra[] = new String[2];
     private String result, plate, color, year, body_type, make_model, url_out, type, processingTime;
-    private ImageView mImageView, mImageBodyType;
+    private ImageView mImageView, mImageBodyType, mColorImageView;
     private TextView mType, mPlate, mColor, mModel, mBodyType, mYear, mProcessingTime;
     private ProgressDialog mProgressDialog;
 
@@ -40,6 +41,21 @@ public class ResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+
+        Toolbar mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle(R.string.app_name);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+            }
+        });
 
         extra = getIntent().getStringArrayExtra("EXTRA_SESSION_ID");
 
@@ -65,21 +81,70 @@ public class ResultActivity extends Activity {
         mBodyType = findViewById(R.id.mBodyType);
         mProcessingTime = findViewById(R.id.processingTime);
         mImageBodyType = findViewById(R.id.iv_body);
+        mColorImageView = findViewById(R.id.mColorImage);
 
 
         mPlate.setText(plate);
 
-        mColor.setText("Color: " + color);
+        setColor();
 
-        mYear.setText("Year: " + year);
+        mYear.setText(year);
 
         setBodyType();
 
-        mModel.setText("Brand: " + make_model);
+        mModel.setText(make_model);
 
-        mType.setText("Model: " + type);
+        mType.setText(type.substring(0,1).toUpperCase()+type.substring(1));
 
         mProcessingTime.setText("Processing Time: " + processingTime);
+
+    }
+
+    private void setColor() {
+
+        mColor.setText(color.substring(0,1).toUpperCase()+color.substring(1));
+
+        switch (color){
+            case("white"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.white));
+                break;
+            case("black"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.black));
+                break;
+            case("blue"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.blue));
+                break;
+            case("brown"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.brown));
+                break;
+            case("gold-beige"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.gold_beige));
+                break;
+            case("green"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.green));
+                break;
+            case("orange"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.orange));
+                break;
+            case("pink"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.pink));
+                break;
+            case("purple"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.purple));
+                break;
+            case("red"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.red));
+                break;
+            case("silver-gray"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.silver_gray));
+                break;
+            case("yellow"):
+                mColorImageView.setColorFilter(getResources().getColor(R.color.yellow));
+                break;
+                default:
+                    mColorImageView.setVisibility(View.INVISIBLE);
+
+        }
 
     }
 
@@ -87,65 +152,65 @@ public class ResultActivity extends Activity {
 
         switch (body_type) {
             case "antique":
-                mBodyType.setText("Body type: " + "Antique");
+                mBodyType.setText(getString(R.string.antique));
                 break;
             case "missing":
-                mBodyType.setText("Body type: Missing");
+                mBodyType.setText(getString(R.string.missing));
                 break;
             case "motorcycle":
-                mBodyType.setText("Body type: Motorcycle");
+                mBodyType.setText(getString(R.string.motorcycle));
                 mImageBodyType.setVisibility(View.INVISIBLE);
                 break;
             case "sedan-compact":
-                mBodyType.setText("Body type: Sedan Compact");
+                mBodyType.setText(getString(R.string.sedan_compact));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
                 break;
             case "sedan-convertible":
-                mBodyType.setText("Body type: Sedan Convertible");
+                mBodyType.setText(getString(R.string.sedan_convertible));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
                 break;
             case "sedan-sports":
-                mBodyType.setText("Body type: Sedan Sports");
+                mBodyType.setText(getString(R.string.sedan_sports));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type5));
                 break;
             case "sedan-standard":
-                mBodyType.setText("Body type: Sedan Standard");
+                mBodyType.setText(getString(R.string.sedan_standard));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type6));
                 break;
             case "sedan-wagon":
-                mBodyType.setText("Body type: Sedan Wagon");
+                mBodyType.setText(getString(R.string.sedan_wagon));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type1));
                 break;
             case "suv-crossover":
-                mBodyType.setText("Body type: SUV Crossover");
+                mBodyType.setText(getString(R.string.suv_crossover));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type7));
                 break;
             case "suv-standard":
-                mBodyType.setText("Body type: SUV Standard");
+                mBodyType.setText(getString(R.string.suv_standard));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type7));
                 break;
             case "suv-wagon":
-                mBodyType.setText("Body type: SUV Wagon");
+                mBodyType.setText(getString(R.string.suv_wagon));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type3));
                 break;
             case "tractor-trailer":
-                mBodyType.setText("Body type: Tractor Trailer");
+                mBodyType.setText(getString(R.string.tractor_trailer));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type4));
                 break;
             case "truck-standard":
-                mBodyType.setText("Body type: Tractor Standard");
+                mBodyType.setText(getString(R.string.tractor_standard));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
                 break;
             case "van-full":
-                mBodyType.setText(getString(R.string.body_type) + getString(R.string.van_full));
+                mBodyType.setText(getString(R.string.van_full));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type8));
                 break;
             case "van-mini":
-                mBodyType.setText(getString(R.string.body_type) + getString(R.string.van_mini));
+                mBodyType.setText(getString(R.string.van_mini));
                 mImageBodyType.setImageDrawable(getResources().getDrawable(R.drawable.body_type2));
                 break;
             default:
-                mBodyType.setText(getString(R.string.body_type) + body_type);
+                mBodyType.setText(body_type);
 
         }
 
