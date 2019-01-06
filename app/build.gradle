@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "uz.shukurov.carrecognition"
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

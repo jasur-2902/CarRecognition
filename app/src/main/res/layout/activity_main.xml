@@ -11,13 +11,13 @@
     tools:context=".MainActivity">
 
 
-    <ImageView
+    <ImageButton
         android:id="@+id/mTakePicture"
         android:layout_width="100dp"
         android:layout_height="76dp"
         android:layout_gravity="center_horizontal"
         android:textSize="15dp"
-        app:srcCompat="@drawable/camera_icon" />
+        android:background="@drawable/camera_button_click" />
 
     <TextView
         android:padding="10dp"
@@ -58,13 +58,13 @@
         android:background="@android:color/darker_gray"
         />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/mCapture"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:textSize="15dp"
-        app:srcCompat="@drawable/ic_gallery" />
+        android:background="@drawable/gallery_button_click" />
 
     <TextView
         android:padding="10dp"
@@ -75,5 +75,6 @@
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
+
 
 </LinearLayout>

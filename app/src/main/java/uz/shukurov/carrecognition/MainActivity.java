@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -14,22 +15,19 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -40,7 +38,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -48,12 +45,11 @@ import java.util.Date;
 
 
 
-
 public class MainActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 999;
     private StorageReference mStorageImage;
-    private ImageView mCapture, mTakePicture;
+    private ImageButton mCapture, mTakePicture;
     private final int CAMERA = 1;
     private String downloadUri;
     private Uri mImageUri = null;
@@ -85,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
 
         mTakePicture = findViewById(R.id.mTakePicture);
 
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        mCapture.startAnimation(myAnim);
+        mTakePicture.startAnimation(myAnim);
+
+
         mLinearLayout = findViewById(R.id.linearLayout);
 
         if (!InternetCheck.isInternetAvailable(this)) {
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
         mTakePicture.setOnClickListener(new View.OnClickListener() {
