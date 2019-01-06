@@ -17,4 +17,6 @@
     <string name="missing"> Missing</string>
     <string name="antique"> Antique</string>
     <string name="car_image_description">Processed Car Image</string>
+    <string name="no_internet">Ops, we could not find an active internet connection…</string>
+    <string name="retry">Retry</string>
 </resources>
