@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> Car Recognition</string>
+    <string name="app_name">Vehicle Recognition</string>
     <string name="body_type">Body type: </string>
     <string name="van_mini"> VAN Mini</string>
     <string name="van_full"> VAN Full</string>
@@ -19,4 +19,5 @@
     <string name="car_image_description">Processed Car Image</string>
     <string name="no_internet">Ops, we could not find an active internet connection…</string>
     <string name="retry">Retry</string>
+    <string name="copyRight">Copy Rights</string>
 </resources>

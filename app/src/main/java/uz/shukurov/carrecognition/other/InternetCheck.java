@@ -1,4 +1,4 @@
-package uz.shukurov.carrecognition;
+package uz.shukurov.carrecognition.other;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
