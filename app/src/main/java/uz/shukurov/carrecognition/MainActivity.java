@@ -2,13 +2,11 @@ package uz.shukurov.carrecognition;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -45,17 +43,16 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import uz.shukurov.carrecognition.WalkThrough.WalkThrough;
 import uz.shukurov.carrecognition.other.InternetCheck;
 import uz.shukurov.carrecognition.other.MyBounceInterpolator;
+import uz.shukurov.carrecognition.other.RequestCode;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 999;
+
     private StorageReference mStorageImage;
     private ImageButton mCapture, mTakePicture;
-    private final int CAMERA = 1;
     private String downloadUri;
     private Uri mImageUri = null;
 
@@ -63,17 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final int GALLERY_REQUEST = 1;
-    private static final int REQUEST_IMAGE_CAPTURE = 2;
-    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
-    public static final int MEDIA_TYPE_IMAGE = 1;
-
-    private static final String IMAGE_DIRECTORY_NAME = "CameraAndroid";
-
     private AlertDialog mDialog;
     private AlertDialog.Builder mBuilder;
     private LinearLayout mLinearLayout;
-    public boolean isFirstStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayout = findViewById(R.id.linearLayout);
 
         if (!InternetCheck.isInternetAvailable(this)) {
-            initSnackbar(R.string.no_internet);
+            initSnackbar();
             mLinearLayout.setVisibility(View.INVISIBLE);
         }
 
@@ -112,11 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+                startActivityForResult(galleryIntent, RequestCode.GALLERY_REQUEST);
 
             }
         });
-
 
 
         mTakePicture.setOnClickListener(new View.OnClickListener() {
@@ -138,17 +126,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-    private void initSnackbar(int messageId) {
-
-
-        final Snackbar snackbar = Snackbar.make(mLinearLayout, messageId, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
+    private void initSnackbar() {
+        final Snackbar snackbar = Snackbar.make(mLinearLayout, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).setAction(R.string.retry, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (InternetCheck.isInternetAvailable(view.getContext())) {
                     mLinearLayout.setVisibility(View.VISIBLE);
-                } else initSnackbar(R.string.no_internet);
+                } else initSnackbar();
             }
         });
 //
@@ -192,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+                        RequestCode.MY_PERMISSIONS_REQUEST_EXTERNAL_STORAGE);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
@@ -208,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS: {
+            case RequestCode.MY_PERMISSIONS_REQUEST_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -245,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     Uri photoURI;
-    static final int REQUEST_TAKE_PHOTO = 120;
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -263,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 photoURI = FileProvider.getUriForFile(this,
                         "uz.shukurov.carrecognition.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                startActivityForResult(takePictureIntent, RequestCode.REQUEST_TAKE_PHOTO);
             }
         }
     }
@@ -282,12 +266,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == RequestCode.GALLERY_REQUEST && resultCode == RESULT_OK) {
             mImageUri = data.getData();
             uploadImage();
         }
 
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+        if (requestCode == RequestCode.REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
 
             mImageUri = photoURI;
             uploadImage();

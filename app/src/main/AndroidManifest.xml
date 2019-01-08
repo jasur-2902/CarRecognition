@@ -29,6 +29,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <provider
@@ -46,7 +47,7 @@
         <activity
             android:name=".ResultActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".WalkThrough.WalkThrough" />
+
     </application>
 
 </manifest>

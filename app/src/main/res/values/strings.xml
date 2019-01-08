@@ -19,5 +19,5 @@
     <string name="car_image_description">Processed Car Image</string>
     <string name="no_internet">Ops, we could not find an active internet connection…</string>
     <string name="retry">Retry</string>
-    <string name="copyRight">Copy Rights</string>
+    <string name="copyRight">Project was created by Jasur Shukurov</string>
 </resources>
