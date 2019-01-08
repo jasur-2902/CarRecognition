@@ -284,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
     private void uploadImage() {
 
         if (mImageUri != null) {
-            //           Toast.makeText(MainActivity.this, "YEss", Toast.LENGTH_SHORT).show();
             final StorageReference filepath = mStorageImage.child(mImageUri.getLastPathSegment());
 
             mBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -299,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
+                        mDialog.show();
                         throw task.getException();
                     }
                     return filepath.getDownloadUrl();
@@ -312,7 +312,8 @@ public class MainActivity extends AppCompatActivity {
                         new DownloadTask().execute(url + query);
 
                     } else {
-                        Toast.makeText(MainActivity.this, "upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        mDialog.cancel();
+                        Toast.makeText(MainActivity.this, "Upload failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -348,6 +349,7 @@ public class MainActivity extends AppCompatActivity {
 
             intent.putExtra("EXTRA_SESSION_ID", extra);
 
+            mDialog.cancel();
             if (result.length() < 600) {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -403,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Response : -- " + response2.toString());
 
             mDialog.cancel();
+
             return response2.toString();
 
 
