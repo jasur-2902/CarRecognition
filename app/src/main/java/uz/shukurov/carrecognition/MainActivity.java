@@ -153,6 +153,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_item1:
                 return true;
             case R.id.menu_item2:
+                AlertDialog dialog;
+                final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("About")
+                        .setMessage("This is one of the best vehicle recognition applications. It can identify the car's license plate number, color, model, brand and year. The project was created by Jasur Shukurov 2018-2019")
+                        .setPositiveButton("Okay!", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+
+
+                dialog = builder.create();
+                dialog.show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
