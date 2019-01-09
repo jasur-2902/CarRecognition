@@ -43,6 +43,69 @@ public class ResultActivity extends Activity {
         setContentView(R.layout.activity_result);
 
 
+        toolbarMethod();
+
+        jsonConverting();
+
+        givingView();
+
+        new DownloadImage().execute(url_out);
+
+
+        mPlate.setText(plate);
+
+        settingDataToElements();
+    }
+
+    private void settingDataToElements() {
+        setColor();
+
+        mYear.setText(year);
+
+        setBodyType();
+
+        String make_model_upperCase = make_model.substring(0, 1).toUpperCase() + make_model.substring(1);
+
+        mModel.setText(make_model_upperCase);
+
+        int separate = type.indexOf("_");
+        String brand = type.substring(0, separate);
+        String model = type.substring(separate + 1);
+        String car_type = brand.substring(0, 1).toUpperCase() + brand.substring(1) + " " + model.substring(0, 1).toUpperCase() + model.substring(1);
+        mType.setText(car_type);
+
+
+        mProcessingTime.setText("Processing Time: " + processingTime);
+    }
+
+    private void givingView() {
+        mImageView = findViewById(R.id.imageView);
+        mType = findViewById(R.id.mType);
+        mPlate = findViewById(R.id.mPlate);
+        mColor = findViewById(R.id.mColor);
+        mModel = findViewById(R.id.mModel);
+        mYear = findViewById(R.id.mYear);
+        mBodyType = findViewById(R.id.mBodyType);
+        mProcessingTime = findViewById(R.id.processingTime);
+        mImageBodyType = findViewById(R.id.iv_body);
+        mColorImageView = findViewById(R.id.mColorImage);
+
+    }
+
+    private void jsonConverting() {
+
+        extra = getIntent().getStringArrayExtra("EXTRA_SESSION_ID");
+
+        result = extra[0];
+        url_out = extra[1];
+        json = new JSON(result);
+
+        getJsonOutput();
+
+
+    }
+
+    private void toolbarMethod() {
         Toolbar mToolbar = findViewById(R.id.toolbar);
         mToolbar.setTitle(R.string.app_name);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
@@ -56,93 +119,52 @@ public class ResultActivity extends Activity {
 
             }
         });
-
-        extra = getIntent().getStringArrayExtra("EXTRA_SESSION_ID");
-
-        result = extra[0];
-        url_out = extra[1];
-
-
-        json = new JSON(result);
-
-        getJsonOutput();
-
-
-        mImageView = findViewById(R.id.imageView);
-
-        new DownloadImage().execute(url_out);
-
-
-        mType = findViewById(R.id.mType);
-        mPlate = findViewById(R.id.mPlate);
-        mColor = findViewById(R.id.mColor);
-        mModel = findViewById(R.id.mModel);
-        mYear = findViewById(R.id.mYear);
-        mBodyType = findViewById(R.id.mBodyType);
-        mProcessingTime = findViewById(R.id.processingTime);
-        mImageBodyType = findViewById(R.id.iv_body);
-        mColorImageView = findViewById(R.id.mColorImage);
-
-
-        mPlate.setText(plate);
-
-        setColor();
-
-        mYear.setText(year);
-
-        setBodyType();
-
-        mModel.setText(make_model);
-
-        mType.setText(type.substring(0,1).toUpperCase()+type.substring(1));
-
-        mProcessingTime.setText("Processing Time: " + processingTime);
-
     }
 
     private void setColor() {
 
-        mColor.setText(color.substring(0,1).toUpperCase()+color.substring(1));
+        String color_upperCase = color.substring(0, 1).toUpperCase() + color.substring(1);
+        mColor.setText(color_upperCase);
 
-        switch (color){
-            case("white"):
+        switch (color) {
+            case ("white"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.white));
                 break;
-            case("black"):
+            case ("black"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.black));
                 break;
-            case("blue"):
+            case ("blue"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.blue));
                 break;
-            case("brown"):
+            case ("brown"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.brown));
                 break;
-            case("gold-beige"):
+            case ("gold-beige"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.gold_beige));
                 break;
-            case("green"):
+            case ("green"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.green));
                 break;
-            case("orange"):
+            case ("orange"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.orange));
                 break;
-            case("pink"):
+            case ("pink"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.pink));
                 break;
-            case("purple"):
+            case ("purple"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.purple));
                 break;
-            case("red"):
+            case ("red"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.red));
                 break;
-            case("silver-gray"):
+            case ("silver-gray"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.silver_gray));
                 break;
-            case("yellow"):
+            case ("yellow"):
                 mColorImageView.setColorFilter(getResources().getColor(R.color.yellow));
                 break;
-                default:
-                    mColorImageView.setVisibility(View.INVISIBLE);
+            default:
+                mColorImageView.setVisibility(View.INVISIBLE);
 
         }
 
