@@ -40,14 +40,15 @@
                 app:cardElevation="6dp">
 
                 <LinearLayout
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="5dp">
 
                         <TextView
                             android:id="@+id/body"
@@ -81,7 +82,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
 
                         <TextView
                             android:id="@+id/brand"
@@ -103,7 +105,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
 
                         <TextView
                             android:id="@+id/year"
@@ -126,7 +129,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
 
                         <TextView
                             android:id="@+id/color"
@@ -138,6 +142,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+
                             android:id="@+id/mColor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -160,7 +165,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
 
 
                         <TextView
@@ -186,13 +192,17 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/darker_gray"
                 android:padding="10dp" />
+
 
             <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -206,9 +216,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -239,15 +249,13 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:contentDescription="@string/car_image_description"
                         tools:src="@tools:sample/avatars[2]" />
-
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
-
 
         <TextView
             android:id="@+id/processingTime"
@@ -255,8 +263,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="15dp"
+            android:paddingTop="5dp"
             android:textColor="@android:color/darker_gray"
             tools:text="Processing Time " />
 
