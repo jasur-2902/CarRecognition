@@ -16,15 +16,16 @@
         android:layout_width="100dp"
         android:layout_height="76dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="15dp"
-        android:background="@drawable/camera_button_click" />
+        android:textSize="15sp"
+        android:background="@drawable/camera_button_click"
+        android:contentDescription="@string/take_picture_button_description" />
 
     <TextView
         android:padding="10dp"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Take a picture"
+        android:text="@string/take_a_picture"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textColor="@android:color/black"
@@ -43,7 +44,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OR"
+        android:text="@string/or"
         android:padding="15dp"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -63,14 +64,15 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="16dp"
-        android:background="@drawable/gallery_button_click" />
+        android:textSize="16sp"
+        android:background="@drawable/gallery_button_click"
+        android:contentDescription="@string/select_from_gallery_button_description" />
 
     <TextView
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select from gallery"
+        android:text="@string/select_from_gallery"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textColor="@android:color/black"
