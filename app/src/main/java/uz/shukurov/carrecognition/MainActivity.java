@@ -169,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
 
                 return true;
+            case R.id.menu_item3:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://home.adelphi.edu/~ja21947/car/privacy_policy.html"));
+                startActivity(browserIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
