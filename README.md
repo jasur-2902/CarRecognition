@@ -1,8 +1,12 @@
 # CarRecognition - AI Model 
 
-This is one of the best vehicle recognition applications. It can determine the car's license plate number, color, model, brand, and year.
+This is one of the best vehicle recognition applications. It can determine the car's license plate number, color, model, brand, and year. 
 
 **Author: Jasurbek Shukurov**
+
+## Why? 
+This model runs with the highest accuracy compared to other models existing in the market. 
+
 ## Features
 
 - **License Plate Recognition**: Accurately detects and recognizes license plate numbers from images.
