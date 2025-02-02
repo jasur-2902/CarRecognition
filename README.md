@@ -1,3 +1,5 @@
+#Due to the hight cost and usage, I've stopped the server :`( . This project isn't supported anymore. You can use the android client side tho, but it won't return anything. 
+
 # CarRecognition - AI Model 
 
 This is one of the best vehicle recognition applications. It can determine the car's license plate number, color, model, brand, and year. 
